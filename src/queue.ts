@@ -1,9 +1,4 @@
-export type Name = "apple" | "grass";
-
-export type Food = {
-    name: Name;
-    amount: number;
-};
+import { Food } from "./lib/Food.ts";
 
 const food: Food = {
     name: "apple",
