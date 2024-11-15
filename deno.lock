@@ -16,8 +16,12 @@
     }
   },
   "workspace": {
-    "dependencies": [
-      "jsr:@std/assert@1"
-    ]
+    "members": {
+      "backend": {
+        "dependencies": [
+          "jsr:@std/assert@1"
+        ]
+      }
+    }
   }
 }
