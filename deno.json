@@ -1,8 +1,10 @@
 {
-  "tasks": {
-    "dev": "deno run --watch main.ts"
+  "workspace": ["./apps/backend","./apps/frontend"],
+  "compilerOptions": {
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "jsxImportSourceTypes": "@types/react"
   },
-  "imports": {
-    "@std/assert": "jsr:@std/assert@1"
-  }
 }
+
