@@ -1,0 +1,28 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  width="64"
+  height="64"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- パンのベース -->
+  <path
+    d="M16 32C16 24.3 21.3 16 32 16C42.7 16 48 24.3 48 32V48C48 52.4 44.4 56 40 56H24C19.6 56 16 52.4 16 48V32Z"
+    fill="#f4c2a1"
+    stroke="#e87c41"
+  />
+  <!-- 中央の線 -->
+  <path
+    d="M20 40H44"
+    stroke="#e87c41"
+    stroke-width="3"
+  />
+  <!-- 粒（装飾） -->
+  <circle cx="28" cy="28" r="2" fill="#e87c41" />
+  <circle cx="36" cy="24" r="2" fill="#e87c41" />
+  <circle cx="40" cy="32" r="2" fill="#e87c41" />
+</svg>
