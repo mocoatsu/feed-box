@@ -3,9 +3,9 @@ import { isFood } from "./lib/Food.ts";
 
 const elephant = new Animal("elephant", 10);
 
-const kv = await Deno.openKv();
+export const kv = await Deno.openKv();
 
-kv.listenQueue((msg) => {
+kv.listenQueue((msg: unknown) => {
     if (!isFood(msg)) return;
 
     elephant.eat(msg);
