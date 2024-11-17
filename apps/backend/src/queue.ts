@@ -1,16 +1,7 @@
-import { Food } from "./lib/Food.ts";
+import { kv } from "./consumer.ts";
 
-const food: Food = {
-    name: "apple",
-    amount: 3,
+export const queueService = {
+    async addNotification(o: unknown) {
+        await kv.enqueue(o);
+    },
 };
-
-const kv = await Deno.openKv();
-
-while (true) {
-    await kv.enqueue(food);
-    await new Promise((resolve) => {
-        console.log(`food:${food.name} added`);
-        setTimeout(resolve, 1000);
-    });
-}

@@ -1,8 +1,23 @@
-export function add(a: number, b: number): number {
-  return a + b;
-}
+import { isFood } from "./lib/Food.ts";
+import { queueService } from "./queue.ts";
 
-// Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
-if (import.meta.main) {
-  console.log("Add 2 + 3 =", add(2, 3));
-}
+Deno.serve((req) => {
+  if (req.headers.get("upgrade") != "websocket") {
+    return new Response(null, { status: 501 });
+  }
+  const { socket, response } = Deno.upgradeWebSocket(req);
+  socket.addEventListener("open", () => {
+    console.log("a client connected!");
+  });
+
+  socket.addEventListener("message", async (event) => {
+    try {
+      const food = JSON.parse(event.data);
+      isFood(food) && await queueService.addNotification(food);
+    } catch (e) {
+      console.error(e);
+      return;
+    }
+  });
+  return response;
+});
