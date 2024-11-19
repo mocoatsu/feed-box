@@ -1,4 +1,4 @@
-import { Food } from "./Food.ts";
+import type { Food } from "./Food.ts";
 
 type Name = "elephant" | "sheep";
 

@@ -1,11 +1,12 @@
-import { Animal } from "./lib/Animal.ts";
-import { isFood } from "./lib/Food.ts";
-
-const elephant = new Animal("elephant", 10);
+import { Animal } from "../../lib/src/Animal.ts";
+import { isFood } from "../../lib/src/Food.ts";
 
 export const kv = await Deno.openKv();
 
+const elephant = new Animal("elephant", 10);
+
 kv.listenQueue((msg: unknown) => {
+    console.log("msg", msg);
     if (!isFood(msg)) return;
 
     elephant.eat(msg);
