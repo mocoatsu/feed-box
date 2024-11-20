@@ -1,5 +1,8 @@
-import { isFood } from "./lib/Food.ts";
-import { queueService } from "./queue.ts";
+import { kv } from "../../consumer/src/main.ts";
+import { isFood } from "../../lib/src/Food.ts";
+import {
+  queueService,
+} from "../../lib/src/message-broker/message-broker.service.ts";
 
 Deno.serve((req) => {
   if (req.headers.get("upgrade") != "websocket") {
@@ -13,11 +16,12 @@ Deno.serve((req) => {
   socket.addEventListener("message", async (event) => {
     try {
       const food = JSON.parse(event.data);
-      isFood(food) && await queueService.addNotification(food);
+      isFood(food) && await queueService.addNotification(kv, food);
     } catch (e) {
       console.error(e);
       return;
     }
   });
+
   return response;
 });

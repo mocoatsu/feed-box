@@ -1,10 +1,14 @@
 {
-  "workspace": ["./apps/backend","./apps/frontend"],
+  "workspace": [
+    "./apps/consumer",
+    "./apps/frontend",
+    "./apps/lib",
+    "./apps/producer"
+  ],
   "compilerOptions": {
-    "lib": ["ES2020", "DOM", "DOM.Iterable","deno.ns", "deno.unstable"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "deno.ns", "deno.unstable"],
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "jsxImportSourceTypes": "@types/react"
   }
 }
-
