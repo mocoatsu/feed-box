@@ -1,12 +1,10 @@
 import type { Food } from "./Food.ts";
 
-type Name = "elephant" | "sheep";
-
-export class Animal {
+export class AnimalEntity {
     #name: string;
     #hangry: number;
 
-    constructor(name: Name, hangry: number) {
+    constructor(name: string, hangry: number) {
         this.#name = name;
         this.#hangry = hangry;
     }
