@@ -5,6 +5,13 @@
     "./apps/lib",
     "./apps/producer"
   ],
+  "tasks": {
+    "dev:frontend": "cd ./apps/frontend && deno run -A --node-modules-dir npm:vite",
+    "dev:consumer": "deno run -A --unstable-kv --watch ./apps/consumer/src/main.ts",
+    "dev:producer": "deno run -A --unstable-kv --watch ./apps/producer/src/main.ts",
+    "dev:backend": "deno task dev:consumer && deno task dev:producer",
+    "dev:all": "deno task dev:frontend && deno task dev:consumer && deno task dev:producer"
+  },
   "compilerOptions": {
     "lib": ["ES2020", "DOM", "DOM.Iterable", "deno.ns", "deno.unstable"],
     "jsx": "react-jsx",
