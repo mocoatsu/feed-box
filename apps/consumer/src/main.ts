@@ -1,16 +1,15 @@
-import { Animal } from "../../lib/src/Animal.ts";
-import { isFood } from "../../lib/src/Food.ts";
+import { AnimalRepository } from "../../lib/src/repository/AnimalRepository.ts";
+import { validate } from "./validate.ts";
 
 export const kv = await Deno.openKv();
 
-const elephant = new Animal("elephant", 10);
+kv.listenQueue(async (msg: unknown) => {
+    const { data, error } = validate(msg);
+    if (!data) return console.error(error);
 
-kv.listenQueue((msg: unknown) => {
-    console.log("msg", msg);
-    if (!isFood(msg)) return;
+    const animals = await AnimalRepository.findById(data.clientId);
 
-    elephant.eat(msg);
-
-    console.log(`${elephant.name}: ${elephant.hangry}`);
-    if (elephant.isFull()) console.log("full");
+    animals.map((animal) =>
+        console.log(`name: ${animal.name}, hangry: ${animal.hangry}`)
+    );
 });
