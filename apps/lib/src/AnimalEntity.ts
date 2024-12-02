@@ -23,6 +23,7 @@ export class AnimalEntity {
 
     eat(food: Food) {
         this.#hangry = Math.max(this.#hangry - food.amount, 0);
+        return this;
     }
 
     isFull() {

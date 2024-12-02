@@ -97,10 +97,6 @@ describe("validate", () => {
         it("returns an obj with a valid arg", () => {
             const props = { amount: 1, clientId: "xxx" };
 
-            expect(subject({ ...props, name: "" }).data).toEqual({
-                ...props,
-                name: "",
-            });
             expect(subject({ ...props, name: "apple" }).data).toEqual({
                 ...props,
                 name: "apple",
@@ -110,6 +106,7 @@ describe("validate", () => {
         it("returns null with a invalid arg", () => {
             const props = { amount: 1, name: "apple" };
 
+            expect(subject({ ...props, name: "" }).data).toBeNull();
             expect(subject({ ...props, name: 1 }).data).toBeNull();
             expect(subject({ ...props, name: true }).data).toBeNull();
             expect(subject({ ...props, name: null }).data).toBeNull();
